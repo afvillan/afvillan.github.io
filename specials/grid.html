@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Display</title>
+  </head>
+  <body style="padding: 0 0 1000px 0; margin: 0">
+    <div
+      class="GRID_000 Ver el vertical Aligment del GRIP"
+      style="
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        margin: 20px 0 0 10px;
+      "
+    >
+      <div style="background: lightblue">div 1 (100px)</div>
+      <div style="background: lightgreen">
+        div 2 (100px)
+        <p>div 2 p</p>
+      </div>
+      <div style="background: lightblue">div 3 (100px)</div>
+    </div>
+
+    <div
+      class="GRID_00 Parecido al Flex, pero se corta el texto p"
+      style="
+        display: grid;
+        /* grid-template-columns: 100px 100px 50px 30px; */
+        grid-auto-flow: column;
+        grid-auto-columns: min-content;
+
+        margin: 20px 0 0 10px;
+      "
+    >
+      <div style="background: lightblue">div 1 (100px)</div>
+      <div style="background: lightgreen"><p>div 2 p (100px)</p></div>
+      <div style="background: lightyellow">
+        <p>div 3 (50px)</p>
+        <p>div 3.2</p>
+      </div>
+      <div style="background: lightgray">div 4 (30px)</div>
+    </div>
+
+    <div
+      class="GRID_01"
+      style="
+        display: grid;
+        grid-template-columns: 100px 100px 50px 30px;
+        /* grid-auto-flow: column;
+        grid-auto-columns: min-content; */
+        margin: 20px 0 0 10px;
+      "
+    >
+      <div style="background: lightblue">div 1 (100px)</div>
+      <div style="background: lightgreen"><p>div 2 p (100px)</p></div>
+      <div style="background: lightyellow">
+        <p>div 3 (50px)</p>
+        <p>div 3.2</p>
+      </div>
+      <div style="background: lightgray">div 4 (30px)</div>
+    </div>
+
+    <div
+      class="GRID_02"
+      style="
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        margin: 20px 0 0 10px;
+      "
+    >
+      <div style="background: lightgray">div 1 (100px)</div>
+      <div style="background: lightgreen"><p>div 2 p (100px)</p></div>
+      <div style="background: lightblue">
+        <p>div 3 (100px)</p>
+        <p>div 3.2</p>
+      </div>
+      <div style="background: lightblue">
+        <p>div 4 (100px)</p>
+        <p>div 4.2</p>
+      </div>
+      <div style="background: lightyellow"><p>div 5 p (100px)</p></div>
+      <div style="background: lightgray">div 6 (100px)</div>
+    </div>
+
+    <div
+      class="GRID_03"
+      style="
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        margin: 20px 10px 0 10px;
+      "
+    >
+      <div style="background: lightgray">div 1 (100px)</div>
+      <div style="background: lightgreen">div 2 (1fr)</div>
+      <div style="background: lightpink">div 3</div>
+    </div>
+
+    <div
+      class="GRID_04"
+      style="
+        display: grid;
+        grid-template-columns: 100px 1fr 2fr;
+        margin: 20px 10px 0 10px;
+      "
+    >
+      <div style="background: lightgray">div 1 (100px)</div>
+      <div style="background: lightgreen">div 2 (1fr)</div>
+      <div style="background: lightpink">div 3 (2fr)</div>
+    </div>
+
+    <div
+      class="GRID_05"
+      style="
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin: 20px 10px 0 10px;
+        padding: 5px;
+        gap: 10px 20px;
+        /* row-gap: 10px;
+        column-gap: 20px; */
+
+        background-color: lightgreen;
+      "
+    >
+      <div style="background: lightblue; height: 200px">div 1 (1fr)</div>
+      <div style="background: lightpink; height: 200px">div 2 (1fr)</div>
+      <div style="background: lightblue; height: 200px">div 3 (1fr)</div>
+      <div style="background: lightpink; height: 200px">div 4 (1fr)</div>
+      <div style="background: lightblue; height: 200px">div 5 (1fr)</div>
+      <div style="background: lightpink; height: 200px">div 6 (1fr)</div>
+    </div>
+  </body>
+</html>

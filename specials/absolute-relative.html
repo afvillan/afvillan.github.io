@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Position</title>
+  </head>
+  <body
+    style="height: 3000px; padding-top: 120px; margin: 0; padding-left: 110px"
+  >
+    <div
+      style="
+        background-color: lightseagreen;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        /* bottom: 100px; */
+      "
+    >
+      header
+    </div>
+
+    <div
+      style="
+        background-color: green;
+        color: whitesmoke;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        top: 100px;
+        width: 90px;
+      "
+    >
+      sidebar
+
+      <div
+        class="position_absolute"
+        style="
+          /* position: absolute. Es respecto a web Page */
+          /* position: fixed. Es respecto al browser windows */
+          position: absolute;
+          background-color: red;
+          color: white;
+          top: 0px;
+          right: 0px;
+        "
+      >
+        X
+      </div>
+    </div>
+
+    <div
+      class="position_absolute"
+      style="
+        /* position: absolute. Es respecto a web Page */
+        /* position: fixed. Es respecto al browser windows */
+        position: absolute;
+        background-color: red;
+        color: white;
+        top: 160px;
+        right: 10px;
+
+        /* Para que se vea debajo del header */
+        z-index: -1;
+      "
+    >
+      absolute position 1
+    </div>
+
+    <div
+      style="
+        background-color: lightblue;
+        height: 200px;
+        width: 200px;
+        position: static;
+        margin-top: 0;
+      "
+    >
+      div 1
+    </div>
+
+    <div
+      style="
+        background-color: lightpink;
+        height: 200px;
+        width: 200px;
+
+        /* position relative colocar elementos con 'posición absoluta' relativos a ellos */
+        position: relative;
+      "
+    >
+      div 2
+
+      <div
+        class="position_absolute"
+        style="
+          /* position: absolute. Es respecto a web Page */
+          /* position: fixed. Es respecto al browser windows */
+          position: absolute;
+          background-color: blue;
+          color: white;
+          bottom: 10px;
+          right: 10px;
+        "
+      >
+        absolute position 2
+      </div>
+    </div>
+  </body>
+</html>

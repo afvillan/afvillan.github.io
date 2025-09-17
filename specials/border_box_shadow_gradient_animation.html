@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gradient Border Box</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0e2136;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @property --deg {
+        syntax: "<angle>";
+        inherits: true;
+        initial-value: 0deg;
+      }
+
+      .box {
+        background: #142d4a;
+        height: 200px;
+        /* width: 300px; */
+        aspect-ratio: 1/1;
+        border-radius: 10px;
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box::before,
+      .box::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        /* background: conic-gradient(from 90deg, red, yellow, green); */
+        /* border-radius: 50%; */
+        background: conic-gradient(
+          from var(--deg) at center,
+          #00c3ff,
+          #4d0199,
+          #6300c6,
+          #009dcd
+        );
+        border-radius: inherit;
+        z-index: -2;
+        padding: 2px;
+
+        animation: autoRotate 2s linear infinite;
+      }
+
+      .box::after {
+        /* z-index: 1; */
+        filter: blur(10px);
+      }
+
+      @keyframes autoRotate {
+        to {
+          --deg: 360deg;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>
