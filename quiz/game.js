@@ -1,7 +1,8 @@
 console.log("game.js");
 
+// We have 1 element with Id = 'question'
 const question = document.getElementById("question");
-
+// We have 4 element with class = 'Choice-Text'
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 
 console.log(question);
@@ -31,27 +32,43 @@ let questions = [
     choice4: "<script file='abc.js'>",
     answer: 3,
   },
+  {
+    question: "How do you write 'Hello World' in an alert box?",
+    choice1: "msgBox('Hello World');",
+    choice2: "alertBox('Hello World');",
+    choice3: "msg('Hello World');",
+    choice4: "alert('Hello World');",
+    answer: 4,
+  },
 ];
 
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 3;
 
-startGame0 = () => {
-  console.log("Game started");
-};
+// Another way to declare a function in javascript
+// startGame0 = () => {
+//   console.log("Game started");
+// };
+// startGame0();
 
-startGame0();
-
+//--------------------------------------------------------------------
+// FUNCTION.   FUNCTION.   FUNCTION.   FUNCTION.   FUNCTION.   FUNCTION.
+//--------------------------------------------------------------------
 function startGame() {
   questionCounter = 0;
   score = 0;
   availableQuestions = [...questions];
   console.log(availableQuestions);
 }
+//--------------------------------------------------------------------
 
+//--------------------------------------------------------------------
+// FUNCTION.   FUNCTION.   FUNCTION.   FUNCTION.   FUNCTION.   FUNCTION.
+//--------------------------------------------------------------------
 function getNextQuestion() {
   if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
-    return window.location.assign("end.html");
+    //return window.location.assign("end.html");
+    return;
   }
 
   questionCounter++;
@@ -72,6 +89,7 @@ function getNextQuestion() {
 
   //   console.log(currentQuestion);
 }
+//--------------------------------------------------------------------
 
 choices.forEach((choice) => {
   choice.addEventListener("click", (e) => {
@@ -87,8 +105,25 @@ choices.forEach((choice) => {
     const selectedAnswer = selectedChoice.dataset["number"];
 
     console.log("selectedAnswer:", selectedAnswer);
+    console.log("currentQuestion.answer:", currentQuestion.answer);
+    console.log(selectedAnswer == currentQuestion.answer);
 
-    getNextQuestion();
+    // let classToApply = "incorrect";
+    // if (selectedAnswer == currentQuestion.answer) {
+    //   classToApply = "correct";
+    // }
+
+    const classToApply =
+      selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+    console.log("classToApply:", classToApply);
+
+    selectedChoice.parentElement.classList.add(classToApply);
+
+    setTimeout(() => {
+      selectedChoice.parentElement.classList.remove(classToApply);
+      getNextQuestion();
+    }, 1000);
   });
 });
 
