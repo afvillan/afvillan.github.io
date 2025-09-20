@@ -51,14 +51,40 @@ let availableQuestions = [];
 
 let questions = [];
 
-fetch("questions.json")
+// fetch("questions.json")
+fetch(
+  // "https://opentdb.com/api.php?amount=40&category=17&difficulty=medium&type=multiple"
+  // "https://opentdb.com/api.php?amount=40&category=9&difficulty=easy&type=multiple"
+  "https://opentdb.com/api.php?amount=40&category=18&difficulty=easy&type=multiple"
+)
   .then((res) => {
     console.log("fetch:", res);
     return res.json();
   })
   .then((loadedQuestions) => {
-    console.log("loadedQuestions:", loadedQuestions);
-    questions = loadedQuestions;
+    console.log("loadedQuestions:", loadedQuestions.results);
+
+    questions = loadedQuestions.results.map((loadedQuestion) => {
+      const formattedQuestion = {
+        question: loadedQuestion.question,
+      };
+
+      const answerChoices = [...loadedQuestion.incorrect_answers];
+      formattedQuestion.answer = Math.floor(Math.random() * 3) + 1;
+      answerChoices.splice(
+        formattedQuestion - 1,
+        0,
+        loadedQuestion.correct_answer
+      );
+
+      answerChoices.forEach((choice, index) => {
+        formattedQuestion["choice" + (index + 1)] = choice;
+      });
+
+      return formattedQuestion;
+    });
+
+    //questions = loadedQuestions;
     startGame();
     getNextQuestion();
   })
@@ -67,7 +93,7 @@ fetch("questions.json")
   });
 
 const CORRECT_BONUS = 10;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 10;
 
 // Another way to declare a function in javascript
 // startGame0 = () => {
@@ -108,11 +134,13 @@ function getNextQuestion() {
   const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
 
-  question.innerText = currentQuestion.question;
+  // question.innerText = currentQuestion.question;
+  question.innerHTML = currentQuestion.question;
 
   choices.forEach((choice) => {
     const number = choice.dataset["number"];
-    choice.innerText = currentQuestion["choice" + number];
+    // choice.innerText = currentQuestion["choice" + number];
+    choice.innerHTML = currentQuestion["choice" + number];
   });
 
   availableQuestions.splice(questionIndex, 1);
