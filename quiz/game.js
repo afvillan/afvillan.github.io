@@ -20,33 +20,51 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-let questions = [
-  {
-    question: "Inside which HTML element do we put the JavaScript?",
-    choice1: "<script>",
-    choice2: "<javascript>",
-    choice3: "<js>",
-    choice4: "<scripting>",
-    answer: 1,
-  },
-  {
-    question:
-      "What is the correct syntax for referring to an external script called 'abc.js'?",
-    choice1: "<script href='abc.js'>",
-    choice2: "<script name='abc.js'>",
-    choice3: "<script src='abc.js'>",
-    choice4: "<script file='abc.js'>",
-    answer: 3,
-  },
-  {
-    question: "How do you write 'Hello World' in an alert box?",
-    choice1: "msgBox('Hello World');",
-    choice2: "alertBox('Hello World');",
-    choice3: "msg('Hello World');",
-    choice4: "alert('Hello World');",
-    answer: 4,
-  },
-];
+// The questions are now in questions.json file
+// let questions = [
+//   {
+//     question: "Inside which HTML element do we put the JavaScript?",
+//     choice1: "<script>",
+//     choice2: "<javascript>",
+//     choice3: "<js>",
+//     choice4: "<scripting>",
+//     answer: 1,
+//   },
+//   {
+//     question:
+//       "What is the correct syntax for referring to an external script called 'abc.js'?",
+//     choice1: "<script href='abc.js'>",
+//     choice2: "<script name='abc.js'>",
+//     choice3: "<script src='abc.js'>",
+//     choice4: "<script file='abc.js'>",
+//     answer: 3,
+//   },
+//   {
+//     question: "How do you write 'Hello World' in an alert box?",
+//     choice1: "msgBox('Hello World');",
+//     choice2: "alertBox('Hello World');",
+//     choice3: "msg('Hello World');",
+//     choice4: "alert('Hello World');",
+//     answer: 4,
+//   },
+// ];
+
+let questions = [];
+
+fetch("questions.json")
+  .then((res) => {
+    console.log("fetch:", res);
+    return res.json();
+  })
+  .then((loadedQuestions) => {
+    console.log("loadedQuestions:", loadedQuestions);
+    questions = loadedQuestions;
+    startGame();
+    getNextQuestion();
+  })
+  .catch((err) => {
+    console.log("ERROR:", err);
+  });
 
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 3;
@@ -150,6 +168,7 @@ function incrementScore(num) {
   scoreText.innerText = score;
 }
 
-startGame();
+// Now we wait until the questions.json file is loaded.
+//startGame();
 
-getNextQuestion();
+// getNextQuestion();
