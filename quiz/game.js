@@ -20,6 +20,9 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
+const loader = document.getElementById("loader");
+const game = document.getElementById("game");
+
 // The questions are now in questions.json file
 // let questions = [
 //   {
@@ -55,7 +58,7 @@ let questions = [];
 fetch(
   // "https://opentdb.com/api.php?amount=40&category=17&difficulty=medium&type=multiple"
   // "https://opentdb.com/api.php?amount=40&category=9&difficulty=easy&type=multiple"
-  "https://opentdb.com/api.php?amount=40&category=18&difficulty=easy&type=multiple"
+  "https://opentdb.com/api.php?amount=10&category=19&difficulty=easy&type=multiple"
 )
   .then((res) => {
     console.log("fetch:", res);
@@ -85,8 +88,8 @@ fetch(
     });
 
     //questions = loadedQuestions;
+
     startGame();
-    getNextQuestion();
   })
   .catch((err) => {
     console.log("ERROR:", err);
@@ -109,6 +112,11 @@ function startGame() {
   score = 0;
   availableQuestions = [...questions];
   console.log(availableQuestions);
+
+  getNextQuestion();
+
+  game.classList.remove("hidden");
+  loader.classList.add("hidden");
 }
 //--------------------------------------------------------------------
 
