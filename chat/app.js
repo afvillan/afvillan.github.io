@@ -12,6 +12,24 @@ const usernameInput = document.getElementById("usernameInput");
 const loginBtn = document.getElementById("loginBtn");
 const loginWindow = document.getElementById("login");
 
+let socket = io();
+
+socket.on("message", (message) => {
+  console.log("message que me llega:", message);
+
+  if (message.type !== messageTypes.LOGIN) {
+    if (message.author === username) {
+      message.type = messageTypes.RIGHT;
+    } else {
+      message.type = messageTypes.LEFT;
+    }
+  }
+
+  messages.push(message);
+  displayMessages();
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+});
+
 const messages = [
   //   {
   //     author: "Arthur",
@@ -72,7 +90,6 @@ displayMessages();
 ////////// login
 
 usernameInput.focus();
-a;
 
 loginBtn.addEventListener("click", (e) => {
   // prevent default of a form
@@ -84,12 +101,12 @@ loginBtn.addEventListener("click", (e) => {
   username = usernameInput.value;
   console.log("username:", username);
 
-  messages.push({ author: username, type: messageTypes.LOGIN });
+  //messages.push({ author: username, type: messageTypes.LOGIN });
+  //displayMessages();
 
-  displayMessages();
+  sendMessage({ author: username, type: messageTypes.LOGIN });
 
   //hide login and show chat window
-
   chatWindow.classList.remove("hidden");
   loginWindow.classList.add("hidden");
   messageInput.focus();
@@ -99,24 +116,52 @@ loginBtn.addEventListener("click", (e) => {
 
 //////////// send Btn callback
 
+Number.prototype.padLeft = function (base, chr) {
+  var len = String(base || 10).length - String(this).length + 1;
+  return len > 0 ? new Array(len).join(chr || "0") + this : this;
+};
+// usage
+//=> 3..padLeft() => '03'
+//=> 3..padLeft(100,'-') => '--3'
+
 sendBtn.addEventListener("click", (e) => {
   e.preventDefault();
   if (!messageInput.value) {
     return console.log("Must supply a message.");
   }
 
+  var d = new Date(),
+    dformat =
+      [
+        (d.getMonth() + 1).padLeft(),
+        d.getDate().padLeft(),
+        d.getFullYear(),
+      ].join("/") +
+      " " +
+      [
+        d.getHours().padLeft(),
+        d.getMinutes().padLeft(),
+        d.getSeconds().padLeft(),
+      ].join(":");
+
   const message = {
     author: username,
-    date: new Date(),
+    // date: new Date(),
+    date: dformat,
     content: messageInput.value,
-    type: messageTypes.RIGHT,
+    // type: messageTypes.RIGHT,
   };
 
-  messages.push(message);
+  sendMessage(message);
 
-  displayMessages();
+  //messages.push(message);
+  //displayMessages();
 
   messageInput.value = "";
 
-  chatWindow.scrollTop = chatWindow.scrollHeight;
+  //chatWindow.scrollTop = chatWindow.scrollHeight;
 });
+
+function sendMessage(message) {
+  socket.emit("message", message);
+}
