@@ -16,7 +16,8 @@
       </header>
 
       <div id="mainContent" class="container flex-grow-1 flex-column">
-        <section id="login" class="hidden">
+        <!-- <section id="login" class="hidden"> -->
+        <section id="login" class="">
           <h2 class="text-center">Get Started</h2>
           <form id="loginForm" class="flex">
             <input
@@ -31,7 +32,7 @@
           </form>
         </section>
 
-        <section id="chat" class="flex-grow-1 flex-column">
+        <section id="chat" class="hidden flex-grow-1 flex-column">
           <div id="messagesList" class="flex-grow-1">
             <!-- <div class="message message-left">
               <div id="message-details" class="flex">
@@ -54,7 +55,7 @@
             </p> -->
           </div>
 
-          <form id="messageForm" class="flex mb-2">
+          <form id="messageForm" class="flex">
             <input
               type="text"
               name="message"
@@ -62,7 +63,7 @@
               placeholder="enter a message"
               class="flex-grow-1"
             />
-            <button id="loginBtn">Send</button>
+            <button id="sendBtn">Send</button>
           </form>
         </section>
       </div>
