@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket</title>
+  </head>
+  <body>
+    <h1>A</h1>
+    Check the console!
+    <ul>
+      <li>
+        Tenemos el servidor de socket.io corriendo en node.js en el puerto 3000.
+        <strong>'node a_server.js'</strong>
+      </li>
+      <li>
+        En el puerto 3001 tenemos corriendo el servidor de http, el cual accede
+        al servidor de socket ubicado en el puerto 3000.
+      </li>
+    </ul>
+
+    <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+    <script src="a_client.js"></script>
+  </body>
+</html>

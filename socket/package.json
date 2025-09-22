@@ -1,0 +1,21 @@
+{
+  "name": "socket-app",
+  "version": "1.0.0",
+  "description": "Learning Sockets",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "server",
+    "node",
+    "socketio"
+  ],
+  "author": "Arthur",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}
